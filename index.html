@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NAREJ TRADE X</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">NAREJ TRADE X</div>
+      <nav>
+        <ul>
+          <li><a href="#chart">Chart</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#signup">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TradingView Chart -->
+  <section id="chart" class="chart-section">
+    <div class="container">
+      <h2>Live Market Chart</h2>
+      <div class="tradingview-widget-container">
+        <div id="tradingview_abcde"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        container_id: "tradingview_abcde",
+        width: "100%",
+        height: 500,
+        symbol: "NASDAQ:AAPL",
+        interval: "D",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: false,
+        hide_top_toolbar: false,
+        save_image: false,
+        studies: ["MACD@tv-basicstudies"],
+        show_popup_button: true,
+        popup_width: "1000",
+        popup_height: "650"
+      });
+    </script>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <h2>Why Trade with Us?</h2>
+      <ul>
+        <li>✔️ Real-time data charts</li>
+        <li>✔️ Technical indicators</li>
+        <li>✔️ Secure portfolio tools</li>
+        <li>✔️ Fast execution</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Our Users Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>"NAREJ TRADE X completely changed how I invest. The intuitive UI and real-time insights are game-changers!"</p>
+          <h4>- Priya S., Retail Investor</h4>
+        </div>
+        <div class="testimonial">
+          <p>"As a beginner, I found NAREJ TRADE X easy to understand and super helpful in learning how to trade wisely."</p>
+          <h4>- Alex M., Student Trader</h4>
+        </div>
+        <div class="testimonial">
+          <p>"I switched from another platform to NAREJ TRADE X, and I’ve never looked back. It's sleek, fast, and reliable."</p>
+          <h4>- Jordan R., Day Trader</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <h2>Start Trading Now</h2>
+      <a href="signup.html" class="btn">Create Account</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NAREX TRADE X. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

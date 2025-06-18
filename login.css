@@ -1,0 +1,104 @@
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.auth-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-container h2 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+input:focus {
+  outline: 2px solid #00bcd4;
+  background-color: #e0f7fa;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+button {
+  padding: 12px;
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:focus {
+  outline: 2px solid #00bcd4;
+}
+
+button:hover {
+  background-color: #0097a7;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+a {
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .auth-container {
+    padding: 20px 10px;
+    max-width: 95vw;
+  }
+  form {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Money | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background-color: #121926;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+    }
+
+    .add-money-container {
+      background-color: #1f2a36;
+      padding: 40px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .add-money-container h1 {
+      margin-bottom: 20px;
+    }
+
+    .add-money-container input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .add-money-container button {
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #00bcd4;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-money-container button:hover {
+      background-color: #0097a7;
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: #00e676;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00bcd4;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="add-money-container">
+    <h1>Add Money to Your Wallet</h1>
+    <form id="add-money-form">
+      <input type="number" id="amount" placeholder="Enter amount (e.g. 500)" required />
+      <button type="submit">Add Funds</button>
+    </form>
+    <p class="success-message" id="message"></p>
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    let balance = parseFloat(localStorage.getItem('balance')) || 12450.75;
+
+    document.getElementById('add-money-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('amount').value);
+      const messageEl = document.getElementById('message');
+
+      if (amount > 0) {
+        balance += amount;
+        localStorage.setItem('balance', balance.toFixed(2));
+        messageEl.textContent = `Successfully added $${amount.toFixed(2)} to your wallet.`;
+        this.reset();
+      } else {
+        messageEl.textContent = 'Please enter a valid amount.';
+      }
+    });
+  </script>
+</body>
+</html>

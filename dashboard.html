@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="logo">TradeX</div>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Settings</a>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard-content">
+    <h1 id="welcome-user">Welcome!</h1>
+    <p>Here's a quick overview of your activity today:</p>
+
+    <div class="cards-container">
+      <div class="card">
+        <h3>Account Balance</h3>
+        <p>$12,450.75</p>
+      </div>
+      <div class="card">
+        <h3>Today's Gain/Loss</h3>
+        <p>+2.36%</p>
+      </div>
+      <div class="card">
+        <h3>Top Asset</h3>
+        <p>BTC/USD</p>
+      </div>
+    </div>
+
+    <section class="trading-board">
+      <h2>Trading Board</h2>
+      <div class="trading-assets">
+        <div class="asset-card" id="asset-BTC">
+          <h3>BTC/USD</h3>
+          <p class="price">$<span class="price-value">27000.00</span></p>
+          <p class="change">+2.3%</p>
+          <div class="actions">
+            <button onclick="alert('Buy BTC')">Buy</button>
+            <button onclick="alert('Sell BTC')">Sell</button>
+          </div>
+        </div>
+        <div class="asset-card" id="asset-ETH">
+          <h3>ETH/USD</h3>
+          <p class="price">$<span class="price-value">1800.00</span></p>
+          <p class="change">-1.2%</p>
+          <div class="actions">
+            <button onclick="alert('Buy ETH')">Buy</button>
+            <button onclick="alert('Sell ETH')">Sell</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Place this inside your trading-board or analytics section -->
+      <section class="live-chart-section">
+        <h2>Live Trading Chart: BTC/USD</h2>
+        <div class="tradingview-widget-container">
+          <div id="tradingview_btc"></div>
+          <script src="https://s3.tradingview.com/tv.js"></script>
+          <script>
+            new TradingView.widget({
+              width: "100%",
+              height: 400,
+              symbol: "BINANCE:BTCUSDT",
+              interval: "60",
+              timezone: "Etc/UTC",
+              theme: "dark",
+              style: "1",
+              locale: "en",
+              toolbar_bg: "#222f44",
+              allow_symbol_change: true,
+              hideideas: true,
+              save_image: false,
+              details: true,
+              studies: ["MACD@tv-basicstudies"],
+              container_id: "tradingview_btc"
+            });
+          </script>
+        </div>
+      </section>
+    </section>
+
+    <section class="analytics-section">
+      <h2>Analytics</h2>
+      <div class="charts-container">
+        <div class="chart-card">
+          <h3>Balance Over Time</h3>
+          <canvas id="balanceChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Portfolio Distribution</h3>
+          <canvas id="portfolioChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Trading Volume</h3>
+          <canvas id="volumeChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-distribution">
+      <h2>Portfolio Distribution</h2>
+      <div class="distribution-container">
+        <div class="asset">
+          <span class="asset-name">Bitcoin (BTC)</span>
+          <span class="asset-percent">45%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 45%; background-color: #f7931a;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Ethereum (ETH)</span>
+          <span class="asset-percent">30%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 30%; background-color: #627eea;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Cardano (ADA)</span>
+          <span class="asset-percent">15%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 15%; background-color: #0033ad;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Others</span>
+          <span class="asset-percent">10%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 10%; background-color: #888;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wallet-section">
+      <h2>Your Wallet</h2>
+      <div class="wallet-card">
+        <p class="balance-label">Current Balance</p>
+        <p class="balance-amount">$12,450.75</p>
+        <div class="wallet-actions">
+          <button onclick="openModal('add')">Add Money</button>
+          <button onclick="openModal('withdraw')">Withdraw</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="trading-chat">
+      <h2>Community Chat</h2>
+      <div class="chat-box" id="chat-box"></div>
+      <form id="chat-form">
+        <input type="text" id="chat-message" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <section class="candlestick-chart-section">
+      <h2>BTC/USD Candlestick Chart</h2>
+      <canvas id="candlestickChart" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <!-- Add Money Modal -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('add')">&times;</span>
+      <h3>Add Money</h3>
+      <form id="add-money-form">
+        <label>
+          Amount:
+          <input type="number" id="add-amount" placeholder="Enter amount" required min="1" step="0.01" />
+        </label>
+        <label>
+          Payment Method:
+          <select id="payment-method" required>
+            <option value="" disabled selected>Select method</option>
+            <option value="card">Credit/Debit Card</option>
+            <option value="bank">Bank Transfer</option>
+          </select>
+        </label>
+        <div id="bank-details" style="display:none; margin-top: 15px; background: #222f44; padding: 15px; border-radius: 8px; color: #ccc;">
+          <p><strong>Bank Transfer Instructions:</strong></p>
+          <p>Account Name: NDUBUISIInc.</p>
+          <p>Account Number: 8135928206</p>
+          <p>Bank: OPAY Bank</p>
+          <p>SWIFT/BIC: GBINUS33</p>
+          <p>Reference: Use your username as payment reference</p>
+        </div>
+        <button type="submit" style="margin-top: 15px;">Add Funds</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Withdraw Money Modal -->
+  <div id="withdraw-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('withdraw')">&times;</span>
+      <h3>Withdraw Money</h3>
+      <form id="withdraw-money-form">
+        <input type="number" id="withdraw-amount" placeholder="Enter amount" required />
+        <button type="submit">Withdraw Funds</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NAREX TRADE X. All rights reserved.</p>
+  </footer>
+
+  <!-- Demo Login Modal -->
+  <div id="login-modal" class="modal" style="display: flex;">
+    <div class="modal-content">
+      <h3>Login to Demo Account</h3>
+      <form id="login-form">
+        <label>
+          Username:
+          <input type="text" id="login-username" placeholder="Enter demo username" required />
+        </label>
+        <button type="submit" style="margin-top: 15px;">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(type) {
+      document.getElementById(`${type}-modal`).style.display = 'flex';
+    }
+    function closeModal(type) {
+      document.getElementById(`${type}-modal`).style.display = 'none';
+    }
+    window.onclick = function (event) {
+      ['add', 'withdraw'].forEach(type => {
+        const modal = document.getElementById(`${type}-modal`);
+        if (event.target === modal) modal.style.display = 'none';
+      });
+    };
+
+    // Show bank details if bank transfer is selected
+    document.addEventListener('DOMContentLoaded', function () {
+      const paymentMethod = document.getElementById('payment-method');
+      const bankDetails = document.getElementById('bank-details');
+      if (paymentMethod) {
+        paymentMethod.addEventListener('change', function () {
+          bankDetails.style.display = this.value === 'bank' ? 'block' : 'none';
+        });
+      }
+    });
+
+    // Asset price simulation
+    const assets = {
+      BTC: { price: 27000, change: 2.3 },
+      ETH: { price: 1800, change: -1.2 },
+    };
+    function updatePrices() {
+      Object.keys(assets).forEach(symbol => {
+        const asset = assets[symbol];
+        const fluctuation = (Math.random() - 0.5) * 200;
+        asset.price += fluctuation;
+        asset.change = (Math.random() * 4 - 2).toFixed(2); // +/- 2%
+        const el = document.getElementById(`asset-${symbol}`);
+        el.querySelector('.price-value').textContent = asset.price.toFixed(2);
+        el.querySelector('.change').textContent = `${asset.change > 0 ? '+' : ''}${asset.change}%`;
+        el.querySelector('.change').style.color = asset.change >= 0 ? '#00e676' : '#ff5252';
+      });
+    }
+    setInterval(updatePrices, 5000);
+
+    // Simple chat functionality
+    const chatForm = document.getElementById('chat-form');
+    const chatBox = document.getElementById('chat-box');
+    if (chatForm && chatBox) {
+      chatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const msg = document.getElementById('chat-message').value.trim();
+        if (msg) {
+          const p = document.createElement('p');
+          p.textContent = msg;
+          chatBox.appendChild(p);
+          chatForm.reset();
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }
+      });
+    }
+
+    // Welcome user from sessionStorage or URL param
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      let username = params.get('user') || sessionStorage.getItem('demoUsername');
+
+      if (username) {
+        document.getElementById('welcome-user').textContent = `Welcome, ${username}!`;
+
+        const storedBalance = parseFloat(sessionStorage.getItem(`balance_${username}`));
+        const displayBalance = !isNaN(storedBalance) ? storedBalance : (typeof demoData !== 'undefined' ? demoData.balance : 12450.75);
+
+        document.querySelector('.card p').textContent = `$${displayBalance.toFixed(2)}`;
+        document.querySelector('.balance-amount').textContent = `$${displayBalance.toFixed(2)}`;
+      }
+    };
+
+    if (window.Chart && window.Chart.FinancialController) {
+      const ctx = document.getElementById('candlestickChart');
+      if (ctx) {
+        const candlestickData = {
+          datasets: [{
+            label: 'BTC/USD',
+            data: [
+              {x: new Date('2025-06-01'), o: 68000, h: 68500, l: 67500, c: 68200},
+              {x: new Date('2025-06-02'), o: 68200, h: 69000, l: 68000, c: 68800},
+              {x: new Date('2025-06-03'), o: 68800, h: 69200, l: 68500, c: 69000},
+              {x: new Date('2025-06-04'), o: 69000, h: 69500, l: 68800, c: 69300},
+              {x: new Date('2025-06-05'), o: 69300, h: 70000, l: 69000, c: 69800}
+            ],
+            color: {
+              up: '#00e676',
+              down: '#ff5252',
+              unchanged: '#999'
+            }
+          }]
+        };
+        new Chart(ctx, {
+          type: 'candlestick',
+          data: candlestickData,
+          options: {
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              x: { type: 'time', time: { unit: 'day' }, ticks: { color: '#fff' }, grid: { color: '#2c3e50' } },
+              y: { ticks: { color: '#fff' }, grid: { color: '#2c3e50' } }
+            }
+          }
+        });
+      }
+    }
+
+    document.getElementById('add-money-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('add-amount').value);
+      const method = document.getElementById('payment-method').value;
+      const username = sessionStorage.getItem('demoUsername');
+
+      if (!amount || isNaN(amount) || amount <= 0 || !username) return;
+
+      // Store amount temporarily for success page
+      sessionStorage.setItem('lastAddedAmount', amount.toFixed(2));
+      sessionStorage.setItem('lastUser', username);
+
+      if (method === 'bank') {
+        window.location.href = 'bank-transfer-success.html';
+      } else {
+        alert('Card payment processed successfully!');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #121212;
+  padding: 20px 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00bcd4;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00bcd4;
+}
+
+/* Hero Section */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.primary {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #0097a7;
+}
+
+.secondary {
+  background-color: transparent;
+  border: 2px solid #00bcd4;
+  color: #00bcd4;
+}
+
+.secondary:hover {
+  background-color: #00bcd4;
+  color: white;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #121212;
+  font-size: 14px;
+  color: #888;
+}
+.testimonials {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #eee;
+  transition: transform 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.testimonial h4 {
+  font-weight: normal;
+  color: #00bcd4;
+}

@@ -1,0 +1,152 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #121212;
+  color: #fff;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+header {
+  background-color: #1e1e1e;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ffd5;
+  display: inline-block;
+}
+
+nav {
+  display: inline-block;
+  float: right;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Modern browsers */
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  /* No margin-right needed if using gap */
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav ul li a:hover {
+  color: #00ffd5;
+}
+
+.chart-section,
+.features-section,
+.signup-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.features-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features-section li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.btn {
+  background-color: #00ffd5;
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background-color: #00bfae;
+  color: #fff;
+}
+
+.testimonials {
+  background: #181818;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.testimonial {
+  background: #232323;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 350px;
+  min-width: 250px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  color: #fff;
+  text-align: left;
+}
+
+.testimonial h4 {
+  margin-top: 16px;
+  color: #00ffd5;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+footer {
+  background-color: #1e1e1e;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    width: 98%;
+    padding: 10px 0;
+  }
+  .testimonial-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav {
+    float: none;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
